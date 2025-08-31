@@ -56,6 +56,10 @@ impl IfInfo {
             return Err(LastErrno)?;
         }
 
+        self.ctx.ifindex = index;
+        self.ctx.queue_id = 0;
+        self.ctx.netnscookie = 0;
+
         Ok(())
     }
 
