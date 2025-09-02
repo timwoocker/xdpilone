@@ -1,3 +1,10 @@
+## v1.2.1
+
+- Fix the behavior of `IfInfo::from_ifindex` to also setup the `ifindex`
+  attribute as well as reset the queue ID and `netnscookie` which is consistent
+  with `from_name`. It would previously erroneously _only_ assign the name but
+  continue to use the previously if index for all system interaction.
+
 ## v1.2.0
 
 - Introduced `XdpStatisticsV2`, a forward compatible struct for fetching

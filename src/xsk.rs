@@ -136,6 +136,7 @@ struct DeviceControl {
 /// A synchronized set for tracking which `IfCtx` are taken.
 trait ControlSet: Send + Sync + 'static {
     fn insert(&self, _: IfCtx) -> bool;
+    #[allow(unused)] // We do not provide a check operation yet.
     fn contains(&self, _: &IfCtx) -> bool;
     fn remove(&self, _: &IfCtx);
 }
@@ -290,7 +291,7 @@ impl Drop for SocketFd {
 //
 // FIXME: In 1.79 this was stabilized. Bump MSRV fine?
 fn ptr_len(ptr: *mut [u8]) -> usize {
-    unsafe { (*(ptr as *mut [()])).len() }
+    unsafe { (&*(ptr as *mut [()])).len() }
 }
 
 impl Socket {
